@@ -10,6 +10,7 @@
 
 **Under Development**
 
+## Storage
 
 ```python
 from slurm import storage
@@ -22,6 +23,30 @@ json = storage.read("file", "json")
 data = [1,2,3,4]
 storage.write("bob.json", data)
 storage.write("guess", data, "yml")
+```
+
+## Network
+
+```python
+from slurm import network
+
+ip = network.get_ip()
+print(ip)
+```
+
+## Sleep Rate
+
+Will sleep for a prescribed amount of time inside of a loop
+irregardless of how long the loop takes
+
+```python
+from slurm.rate import Rate
+
+rate = Rate(10)  # let loop run at 10 Hz
+
+while True:
+    # so some processing
+    rate.sleep()
 ```
 
 # MIT License
