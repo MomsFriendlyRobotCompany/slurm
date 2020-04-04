@@ -1,4 +1,4 @@
-![](pics/slurm.jpg)
+![](https://github.com/MomsFriendlyRobotCompany/slurm/blob/master/pics/slurm.jpg?raw=true)
 
 # Slurm
 
