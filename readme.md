@@ -3,11 +3,10 @@
 # Slurm
 
 
-[![Actions Status](https://github.com/MomsFriendlyRobotCompany/slurm/workflows/CheckPackage/badge.svg)](https://github.com/MomsFriendlyRobotCompany/slurm/actions)
+[![Actions Status](https://github.com/MomsFriendlyRobotCompany/slurm/workflows/walchko%20pytest/badge.svg)](https://github.com/MomsFriendlyRobotCompany/slurm/actions)
 ![GitHub](https://img.shields.io/github/license/MomsFriendlyRobotCompany/slurm)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/slurm)
 ![PyPI](https://img.shields.io/pypi/v/slurm)
-[![Downloads](https://img.shields.io/pypi/dm/slurm.svg)](https://img.shields.io/pypi/dm/slurm.svg)
 
 **Under Development**
 
