@@ -29,8 +29,7 @@ classifiers = [
 python = ">=3.6"
 simplejson = "*"
 pyyaml = "*"
-# pyserial = "^3.4"
-# colorama = "*"
+colorama = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
