@@ -5,6 +5,7 @@
 # see LICENSE for full details
 ##############################################
 import socket
+import platform
 
 
 def get_ip():
@@ -33,3 +34,7 @@ def get_ip():
         s.close()
 
     return IP
+
+def get_host():
+    """Returns (hostname, ipaddr)"""
+    return (platform.node(), get_ip(),)
