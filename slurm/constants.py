@@ -6,7 +6,7 @@
 ##############################################
 from math import pi
 
-# value?
+# Metric Prefixes ========================
 femto = 1E-15
 pico = femto*1000
 nano = pico*1000
@@ -17,6 +17,6 @@ kilo = 1E3
 mega = kilo*1000
 giga = mega*1000
 
-# conversions
+# Angular Conversions =====================
 deg2rad = pi/180
 rad2deg = 180/pi

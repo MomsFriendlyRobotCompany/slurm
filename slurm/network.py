@@ -8,6 +8,11 @@ import socket
 
 
 def get_ip():
+    """
+    Gets the localhost's ip address and returns:
+        - ip address
+        - 127.0.0.1
+    """
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     IP = None
     try:

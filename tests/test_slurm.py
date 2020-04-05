@@ -1,12 +1,15 @@
 from slurm import network, storage
+from slurm.simple_thread import SimpleProcess
 import os
 from math import pi
+import time
+
 
 # Network ==================================================================
 
 def test_ip():
     ip = network.get_ip()
-
+    print(f"ip: {ip}")
     assert ip, f"Invalid IP found:{ip}"
 
 # Storages ==================================================================
@@ -28,3 +31,19 @@ def test_json():
 
 def test_yaml():
     file_func('test.yml')
+
+# Process ==================================================================
+
+def func():
+    for _ in range(10):
+        print(".", end="")
+        time.sleep(0.1)
+    print("")
+
+def test_process():
+    p = SimpleProcess()
+    p.start(func)
+    print(p)
+    p.join()
+
+    assert True
