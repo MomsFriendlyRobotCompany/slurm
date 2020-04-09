@@ -1,5 +1,11 @@
+# -*- coding: utf-8 -*-
+##############################################
+# The MIT License (MIT)
+# Copyright (c) 2020 Kevin Walchko
+# see LICENSE for full details
+##############################################
 from slurm import network, storage
-from slurm.simple_thread import SimpleProcess
+from slurm.simple_process import SimpleProcess
 import os
 from math import pi
 import time
@@ -15,7 +21,7 @@ def test_ip():
 # Storages ==================================================================
 
 def file_func(fname):
-    _, ext = fname.split(".")
+    # _, ext = fname.split(".")
 
     data = {'a': 1, 'bob': [1, 2, 3, 4], 'c': "hello cowboy", 'd': {'a': pi}}
 
