@@ -12,7 +12,7 @@ import shutil          # move and delete files/folders
 def run(cmd):
     """Runs a command string and returns the output"""
     cmds = cmd.split()
-    return check_output(cmds)
+    return check_output(cmds).decode("utf-8")
 
 
 def mkdir(path):

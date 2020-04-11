@@ -5,6 +5,7 @@
 # see LICENSE for full details
 ##############################################
 from slurm import network, storage
+from slurm.files import mkdir, rmdir, run
 from slurm.simple_process import SimpleProcess
 import os
 from math import pi
@@ -58,3 +59,26 @@ def test_process():
     p.join()
 
     assert True
+
+
+# Files ====================================================================
+
+def test_files():
+    dir = "tmp_dir"
+
+    try:
+        mkdir(dir)
+
+        # ls = run(f"ls {dir}")
+        # ls = run(f"ls")
+        # ls.replace('\n'," ")
+        # print(f">> {ls}")
+        # assert ls == dir, f"slurm.files.run failed: {ls} != {dir}"
+
+        rmdir(dir)
+
+        assert True
+    except Exception as e:
+        assert False, f"slurm.files failed: {e}"
+
+    # assert ls == dir, f"slurm.files.run failed: {ls} != {dir}"

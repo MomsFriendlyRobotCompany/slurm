@@ -8,7 +8,7 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/slurm)
 ![PyPI](https://img.shields.io/pypi/v/slurm)
 
-**Under Development**
+This is a collection of tools I have used over the years collected together.
 
 ## Storage
 
@@ -49,6 +49,15 @@ rate = Rate(10)  # let loop run at 10 Hz
 while True:
     # so some processing
     rate.sleep()
+```
+
+## Files
+
+```python
+from slurm.files import rmdir, mkdir, run
+
+mkdir("some/path")
+rmdir("some/path")
 ```
 
 # MIT License

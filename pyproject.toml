@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "slurm"
-version = "0.3.1"
+version = "0.4.0"
 description = "A bunch tools I have created over the years"
 authors = ["walchko <walchko@users.noreply.github.com>"]
 readme = "readme.md"
