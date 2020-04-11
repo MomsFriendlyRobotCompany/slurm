@@ -6,16 +6,17 @@
 ##############################################
 
 import yaml
+import pickle
 import os
-try:
-    import simplejson as json
-except ImportError:
-    import json
+import simplejson as json
 
 
-def storage_read(fname, func):
+def get_size(fname):
+    return os.path.getsize(fname)
+
+def storage_read(fname, func, access='r'):
     try:
-        with open(fname, 'r') as fd:
+        with open(fname, access) as fd:
             data = func(fd)
 
     except IOError:
@@ -23,12 +24,9 @@ def storage_read(fname, func):
 
     return data
 
-def get_size(fname):
-    return os.path.getsize(fname)
-
-def storage_write(fname, func, data):
+def storage_write(fname, func, data, access='w'):
     try:
-        with open(fname, 'w') as fd:
+        with open(fname, access) as fd:
             func(data, fd)
 
     except IOError:
@@ -37,10 +35,10 @@ def storage_write(fname, func, data):
 
 def write(fname, data, fmt=None):
     """
-    Writes a Yaml or Json file
+    Writes a Pickle, Yaml or Json file
         filename: file name
         data: data to be written
-        fmt: [optional] format (yaml or json)
+        fmt: [optional] format (pickle, yaml or json)
     """
     if not fmt:
         (f,fmt) = fname.split(".")
@@ -49,14 +47,16 @@ def write(fname, data, fmt=None):
         storage_write(fname, yaml.safe_dump, data)
     elif fmt == "json":
         storage_write(fname, json.dump, data)
+    elif fmt == "pickle":
+        storage_write(fname, pickle.dump, data, 'wb')
     else:
         raise Exception()
 
 def read(fname, fmt=None):
     """
-    Reads a Yaml or Json file
+    Reads a Pickle, Yaml or Json file
         fname: file name
-        fmt: [optional] format (yaml or json)
+        fmt: [optional] format (pickle, yaml or json)
         return: data
     """
     if not fmt:
@@ -66,5 +66,7 @@ def read(fname, fmt=None):
         return storage_read(fname, yaml.safe_load)
     elif fmt == "json":
         return storage_read(fname, json.load)
+    elif fmt == "pickle":
+        return storage_read(fname, pickle.load, 'rb')
     else:
         raise Exception()

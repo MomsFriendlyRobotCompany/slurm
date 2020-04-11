@@ -15,14 +15,16 @@
 ```python
 from slurm import storage
 
+pick = storage.read("file.pickle")
 yaml = storage.read("file.yaml")
 json = storage.read("file.json")
 json = storage.read("file", "json")
 
 
 data = [1,2,3,4]
+storage.write("tom.pickle", data)
 storage.write("bob.json", data)
-storage.write("guess", data, "yml")
+storage.write("guess.file", data, "yml")
 ```
 
 ## Network

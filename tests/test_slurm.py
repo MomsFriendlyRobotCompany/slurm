@@ -38,6 +38,11 @@ def test_json():
 def test_yaml():
     file_func('test.yml')
 
+
+def test_yaml():
+    file_func('test.pickle')
+
+
 # Process ==================================================================
 
 def func():
