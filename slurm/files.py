@@ -31,3 +31,15 @@ def rmdir(path):
     except FileNotFoundError:
         # folder was already deleted or doesn't exist ... it's ok
         pass
+
+def file_size(s):
+    """Given a file size in bytes, this returns a printable size
+
+    Returns: (size, prefix) - > (12.345, 'GB')
+    """
+    mem = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+    for x in range(1, 6):
+        if s > 1000:
+            s = math.ceil(s / 1024)
+            size = mem[x]
+    return s, size
