@@ -29,6 +29,8 @@ def file_func(fname):
     storage.write(fname, data)
     d = storage.read(fname)
     assert d == data, f"{d} != {data}"
+
+    fname = os.path.expanduser(fname)
     os.remove(fname)
 
 
@@ -42,6 +44,10 @@ def test_yaml():
 
 def test_yaml():
     file_func('test.pickle')
+
+
+def test_user_home():
+    file_func('~/github/slurm/tests/test2.pickle')
 
 
 # Process ==================================================================
