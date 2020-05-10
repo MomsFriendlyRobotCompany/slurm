@@ -15,6 +15,7 @@ def get_size(fname):
     return os.path.getsize(fname)
 
 def storage_read(fname, func, access='r'):
+    fname = os.path.expanduser(fname)
     try:
         with open(fname, access) as fd:
             data = func(fd)
@@ -25,6 +26,7 @@ def storage_read(fname, func, access='r'):
     return data
 
 def storage_write(fname, func, data, access='w'):
+    fname = os.path.expanduser(fname)
     try:
         with open(fname, access) as fd:
             func(data, fd)
