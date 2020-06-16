@@ -19,7 +19,6 @@ class SimpleProcess(object):
     ...                       # stuff happens
     p.join()                  # time to go ... bye!
     """
-    # ps = None
     ps = attr.ib(init=False, default=None)
 
     def __del__(self):
@@ -35,26 +34,30 @@ class SimpleProcess(object):
         return self.ps.pid
 
     def is_alive(self):
+        """Check if the process is still running"""
         if self.ps:
             return self.ps.is_alive()
         else:
             return False
 
     def terminate(self):
+        """Terminate the process"""
         if self.ps:
             self.ps.terminate()
 
     def start(self, func, name='simple_process', **kwargs):
-        # print("kwargs:", kwargs)
+        """Starts the process
+          func: function for multi-process
+          name: what to call the process
+          kwargs: args to pass function
+        """
         if kwargs:
             kwargs = kwargs['kwargs']  # WTF???
             self.ps = mp.Process(name=name, target=func, kwargs=kwargs)
         else:
             self.ps = mp.Process(name=name, target=func)
 
-        # self.ps = mp.Process(name=name, target=func, kwargs=kwargs)
         self.ps.start()
-        # print('>> Simple Process Started: {}[{}]'.format(self.ps.name, self.ps.pid))
         print(f'>> {Fore.GREEN}Started{Fore.RESET}: {self.ps.name}[{self.ps.pid}]')
 
     def join(self, timeout=1.0):
@@ -64,7 +67,6 @@ class SimpleProcess(object):
 
         timeout: how long to wait for join() in seconds.
         """
-        # print('>> Stopping Simple Process {}[{}] ...'.format(self.ps.name, self.ps.pid))
         print(f'>> {Fore.RED}Stopping{Fore.RESET}: {self.ps.name}[{self.ps.pid}] ...')
         if self.ps:
             self.ps.join(timeout)

@@ -10,6 +10,7 @@ import platform        # macOS or windows
 import shutil          # move and delete files/folders
 import pathlib         # recursive file finding
 from math import ceil  # file size
+from colorama import Fore
 
 
 def run(cmd):
@@ -38,7 +39,7 @@ def rmdir(path):
 def rm(fname):
     """Removes (deletes) a file or list of files"""
     if fname is None:
-        print(f"{Fore.RED}*** No file to remove ***{Fore.RESET}")
+        # print(f"{Fore.RED}*** No file to remove ***{Fore.RESET}")
         return
     if not isinstance(fname, list):
         fname = [fname]

@@ -11,6 +11,7 @@ import os
 import simplejson as json
 
 
+
 def get_size(fname):
     return os.path.getsize(fname)
 
