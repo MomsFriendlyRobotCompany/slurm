@@ -54,10 +54,17 @@ while True:
 ## Files
 
 ```python
-from slurm.files import rmdir, mkdir, run
+from slurm.files import rmdir, mkdir, run, rm, find
 
 mkdir("some/path")
 rmdir("some/path")
+rm("/path/file.txt")
+rm(["path/a.txt", "path/2/b.txt", "path/3/c.txt"])
+
+find("/path/to/somewhere", "file_to_find") # -> list
+find("/path/to/somewhere", "*.html") # -> list
+
+run("ls -alh") # -> output
 ```
 
 # MIT License

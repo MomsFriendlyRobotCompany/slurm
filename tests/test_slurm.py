@@ -5,7 +5,7 @@
 # see LICENSE for full details
 ##############################################
 from slurm import network, storage
-from slurm.files import mkdir, rmdir, run
+from slurm.files import mkdir, rmdir, run, rm, touch, file_size
 from slurm.simple_process import SimpleProcess
 import os
 from math import pi
@@ -74,17 +74,21 @@ def test_files():
 
     try:
         mkdir(dir)
-
-        # ls = run(f"ls {dir}")
-        # ls = run(f"ls")
-        # ls.replace('\n'," ")
-        # print(f">> {ls}")
-        # assert ls == dir, f"slurm.files.run failed: {ls} != {dir}"
-
+        os.chdir(dir)
+        touch("kevin.test")
+        ls = os.listdir()
+        r = run("ls").split("\n")
+        assert ls == r, f"slurm.files.run failed: {ls} != {r}"
+        os.chdir("..")
         rmdir(dir)
 
         assert True
     except Exception as e:
         assert False, f"slurm.files failed: {e}"
 
-    # assert ls == dir, f"slurm.files.run failed: {ls} != {dir}"
+def test_size():
+    for f, ans in zip([1024*8, 1024**2*8, 1024**3*8], ["KB", "MB", "GB"]):
+        a,b = file_size(f)
+        # print(a,b)
+        assert a == 1, f"{a} -> 1"
+        assert b == ans, f"{b} -> {ans}"
