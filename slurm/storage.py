@@ -11,7 +11,6 @@ import os
 import simplejson as json
 
 
-
 def get_size(fname):
     return os.path.getsize(fname)
 
@@ -46,7 +45,7 @@ def write(fname, data, fmt=None):
         fmt: [optional] format (pickle, yaml or json)
     """
     if not fmt:
-        (f,fmt) = fname.split(".")
+        fmt = fname.split(".")[-1]
 
     if fmt in ['yml', 'yaml']:
         storage_write(fname, yaml.safe_dump, data)
@@ -65,7 +64,7 @@ def read(fname, fmt=None):
         return: data
     """
     if not fmt:
-        (f, fmt) = fname.split(".")
+        fmt = fname.split(".")[-1]
 
     if fmt in ['yml', 'yaml']:
         return storage_read(fname, yaml.safe_load)
