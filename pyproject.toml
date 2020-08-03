@@ -32,7 +32,7 @@ pyyaml = "*"
 colorama = "*"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "*"
 # mypy = "*"
 
 # [mypy-pi_servo_serial]
