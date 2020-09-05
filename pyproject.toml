@@ -30,6 +30,7 @@ python = ">=3.6"
 simplejson = "*"
 pyyaml = "*"
 colorama = "*"
+importlib-metadata = {version="*", python="<3.8"}
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
