@@ -47,7 +47,7 @@ from slurm.rate import Rate
 rate = Rate(10)  # let loop run at 10 Hz
 
 while True:
-    # so some processing
+    # do some processing
     rate.sleep()
 ```
 
