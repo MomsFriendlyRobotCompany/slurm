@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "slurm"
-version = "0.4.4"
+version = "0.4.5"
 description = "A bunch tools I have created over the years"
 authors = ["walchko <walchko@users.noreply.github.com>"]
 readme = "readme.md"
@@ -22,22 +22,16 @@ classifiers = [
     'Topic :: Software Development :: Libraries :: Application Frameworks'
 ]
 
-# [tool.poetry.scripts]
-# # script_name = 'myscript:main'
-
 [tool.poetry.dependencies]
 python = ">=3.6"
 simplejson = "*"
+requests = "*"
 pyyaml = "*"
 colorama = "*"
 importlib-metadata = {version="*", python="<3.8"}
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
-# mypy = "*"
-
-# [mypy-pi_servo_serial]
-# ignore_missing_imports = True
 
 [build-system]
 requires = ["poetry>=0.12"]
