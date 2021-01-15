@@ -67,6 +67,18 @@ find("/path/to/somewhere", "*.html") # -> list
 run("ls -alh") # -> output
 ```
 
+## Google Drive Access
+
+This only supports downloading shared file links.
+
+```python
+from slurm.googledrive import GoogleDrive
+
+url = "shared link from google drive"
+gd = GoogleDrive()
+gd.download(url, dumpHeader=True)
+```
+
 # MIT License
 
 **Copyright (c) 2014 Kevin J. Walchko**

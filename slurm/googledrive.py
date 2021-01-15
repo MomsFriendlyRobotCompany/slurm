@@ -5,6 +5,10 @@ import mimetypes
 
 
 class GoogleDrive:
+    """
+    Allow downloading of sharable files using their link
+    """
+
     # get list of mime types
     mimes = list(mimetypes.types_map.values())
 
@@ -13,6 +17,12 @@ class GoogleDrive:
         return x[5]
 
     def download(self, link, destination=None, dumpHeader=False, download=True):
+        """
+        link: shared link of file from google drive
+        destination: file name if you want over ride the original OR zipped files
+        dumpHeader: debug, print response info
+        download: debug, do everything but actually download file
+        """
         id = self.url_to_id(link)
         URL = "https://docs.google.com/uc?export=download"
 
