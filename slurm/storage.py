@@ -26,18 +26,20 @@ def storage_read(fname, func, access='r'):
 
     return data
 
-def storage_write(fname, func, data, access='w'):
+def storage_write(fname, func, data, access='w', comments=None):
     fname = os.path.expanduser(fname)
     # print(fname)
     try:
         with open(fname, access) as fd:
+            if comments:
+                fd.write(comments + "\n")
             func(data, fd)
 
     except IOError:
         raise Exception(f'Could not open {fname} for writing')
 
 
-def write(fname, data, fmt=None):
+def write(fname, data, fmt=None, comments=None):
     """
     Writes a Pickle, Yaml or Json file
         filename: file name
@@ -48,7 +50,7 @@ def write(fname, data, fmt=None):
         fmt = fname.split(".")[-1]
 
     if fmt in ['yml', 'yaml']:
-        storage_write(fname, yaml.safe_dump, data)
+        storage_write(fname, yaml.safe_dump, data, comments=comments)
     elif fmt == "json":
         storage_write(fname, json.dump, data)
     elif fmt == "pickle":

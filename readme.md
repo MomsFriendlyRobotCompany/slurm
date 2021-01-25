@@ -27,6 +27,32 @@ storage.write("bob.json", data)
 storage.write("guess.file", data, "yml")
 ```
 
+Also, for YAML files, you can put comments in:
+
+```python
+info = {
+    "a": 1
+}
+
+num = 5
+comm = f"""
+# hello {num} dogs!!
+# there
+# big boy
+"""
+storage.write("t.yaml", info, comments=comm)
+```
+
+which will produce:
+
+```yaml
+# hello 5 dogs!!
+# there
+# big boy
+
+a: 1
+```
+
 ## Network
 
 ```python
