@@ -7,6 +7,7 @@
 ![GitHub](https://img.shields.io/github/license/MomsFriendlyRobotCompany/slurm)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/slurm)
 ![PyPI](https://img.shields.io/pypi/v/slurm)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/slurm?color=aqua)
 
 This is a collection of tools I have used over the years collected together.
 
