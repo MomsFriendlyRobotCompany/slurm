@@ -8,7 +8,6 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/slurm)
 ![PyPI](https://img.shields.io/pypi/v/slurm)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/slurm?color=aqua)
-![CodeQL](https://github.com/MomsFriendlyRobotCompany/slurm/workflows/CodeQL/badge.svg)
 
 This is a collection of tools I have used over the years collected together.
 
