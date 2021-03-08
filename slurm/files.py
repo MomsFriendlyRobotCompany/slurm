@@ -54,7 +54,7 @@ def rm(fname):
 
 def find(path, fname):
     """Given a path, this will recursively search for a file (bob.txt) or
-    pattern (*.txt). It returns an array of found file paths."""
+    pattern (\*.txt). It returns an array of found file paths."""
     fn = []
     for p in pathlib.Path(path).rglob(fname):
         fn.append(p)

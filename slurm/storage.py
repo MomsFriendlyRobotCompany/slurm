@@ -12,9 +12,10 @@ import simplejson as json
 
 
 def get_size(fname):
+    """Returns the file size"""
     return os.path.getsize(fname)
 
-def storage_read(fname, func, access='r'):
+def _storage_read(fname, func, access='r'):
     fname = os.path.expanduser(fname)
     # print(fname)
     try:
@@ -26,7 +27,7 @@ def storage_read(fname, func, access='r'):
 
     return data
 
-def storage_write(fname, func, data, access='w', comments=None):
+def _storage_write(fname, func, data, access='w', comments=None):
     fname = os.path.expanduser(fname)
     # print(fname)
     try:
@@ -42,37 +43,38 @@ def storage_write(fname, func, data, access='w', comments=None):
 def write(fname, data, fmt=None, comments=None):
     """
     Writes a Pickle, Yaml or Json file
-        filename: file name
-        data: data to be written
-        fmt: [optional] format (pickle, yaml or json)
+        :filename: file name
+        :data: data to be written
+        :fmt: [optional] format (pickle, yaml or json)
     """
     if not fmt:
         fmt = fname.split(".")[-1]
 
     if fmt in ['yml', 'yaml']:
-        storage_write(fname, yaml.safe_dump, data, comments=comments)
+        _storage_write(fname, yaml.safe_dump, data, comments=comments)
     elif fmt == "json":
-        storage_write(fname, json.dump, data)
+        _storage_write(fname, json.dump, data)
     elif fmt == "pickle":
-        storage_write(fname, pickle.dump, data, 'wb')
+        _storage_write(fname, pickle.dump, data, 'wb')
     else:
         raise Exception()
 
 def read(fname, fmt=None):
     """
     Reads a Pickle, Yaml or Json file
-        fname: file name
-        fmt: [optional] format (pickle, yaml or json)
-        return: data
+        :fname: file name
+        :fmt: [optional] format (pickle, yaml or json)
+    return
+        :data: dictionary of data
     """
     if not fmt:
         fmt = fname.split(".")[-1]
 
     if fmt in ['yml', 'yaml']:
-        return storage_read(fname, yaml.safe_load)
+        return _storage_read(fname, yaml.safe_load)
     elif fmt == "json":
-        return storage_read(fname, json.load)
+        return _storage_read(fname, json.load)
     elif fmt == "pickle":
-        return storage_read(fname, pickle.load, 'rb')
+        return _storage_read(fname, pickle.load, 'rb')
     else:
         raise Exception()

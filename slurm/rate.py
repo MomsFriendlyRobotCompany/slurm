@@ -12,6 +12,9 @@ class Rate:
     Uses sleep to keep a desired message/sample rate.
     """
     def __init__(self, hertz):
+        """
+            :hertz: rate loop should run at
+        """
         self.last_time = time.time()
         self.dt = 1/hertz
 

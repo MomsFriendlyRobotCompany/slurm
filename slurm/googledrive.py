@@ -28,10 +28,10 @@ class GoogleDrive:
 
     def download(self, link, destination=None, dumpHeader=False, download=True):
         """
-        link: shared link of file from google drive
-        destination: file name if you want over ride the original OR zipped files
-        dumpHeader: debug, print response info
-        download: debug, do everything but actually download file
+        :link: shared link of file from google drive
+        :destination: file name if you want over ride the original OR zipped files
+        :dumpHeader: debug, print response info
+        :download: debug, do everything but actually download file
 
         Return: (bool, filename)
         """
