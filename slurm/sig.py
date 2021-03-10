@@ -8,7 +8,7 @@ import signal
 from colorama import Back
 
 
-class SignalCatch(object):
+class SignalCatch:
     """
     Catches SIGINT and SIGTERM signals and sets kill = True
 
@@ -38,18 +38,18 @@ class SignalCatch(object):
     def kill(self, val):
         """Sets the kill value"""
         self._kill = val
-        print("SIGNAL CHANGED KILL:", self._kill)
+        # print("SIGNAL CHANGED KILL:", self._kill)
         # raise Exception("WTF")
 
     def kill_signals(self):
         if self.kill_init:
-            print("*** KILL ALREADY SET ***")
+            # print("*** KILL ALREADY SET ***")
             return
         signal.signal(signal.SIGINT, self._exit_gracefully)
         signal.signal(signal.SIGTERM, self._exit_gracefully)
         self.kill_init = True
 
-    def _exit_gracefully(self, signum):
+    def exit_gracefully(self, signum):
         """
         When handler gets called, it sets the self.kill to True
         """

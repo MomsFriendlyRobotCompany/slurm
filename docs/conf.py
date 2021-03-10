@@ -13,8 +13,9 @@ copyright = '2014, Kevin Walchko'
 author = 'Kevin J. Walchko'
 
 # The full version, including alpha/beta/rc tags
-# from importlib.metadata import version
-# release = str(version("slurm"))
+import slurm
+release = slurm.__version__         # major.minor.patch
+version = release.rsplit('.', 1)[0] # major.minor
 
 source_suffix = ['.rst', '.md']
 # default_role = "any"

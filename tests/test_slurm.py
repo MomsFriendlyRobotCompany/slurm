@@ -7,10 +7,24 @@
 from slurm import network, storage
 from slurm.files import mkdir, rmdir, run, rm, touch, file_size
 from slurm.simple_process import SimpleProcess
+from slurm.rate import Rate
 import os
 from math import pi
 import time
 
+
+# Rate =====================================================================
+
+def test_rate():
+    rate = Rate(10)
+    a = time.time()
+
+    for i in range(10):
+        rate.sleep()
+
+    b = time.time()
+
+    assert (b-a) < 1.1
 
 # Network ==================================================================
 

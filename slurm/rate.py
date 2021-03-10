@@ -9,7 +9,7 @@ import time
 
 class Rate:
     """
-    Uses sleep to keep a desired message/sample rate.
+    Uses sleep to keep a desired message/sample rate for a loop.
     """
     def __init__(self, hertz):
         """
