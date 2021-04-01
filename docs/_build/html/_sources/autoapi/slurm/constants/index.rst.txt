@@ -1,0 +1,64 @@
+:mod:`slurm.constants`
+======================
+
+.. py:module:: slurm.constants
+
+
+Module Contents
+---------------
+
+.. data:: femto
+   :annotation: = 1e-15
+
+   
+
+.. data:: pico
+   
+
+   
+
+.. data:: nano
+   
+
+   
+
+.. data:: micro
+   
+
+   
+
+.. data:: milli
+   
+
+   
+
+.. data:: centi
+   :annotation: = 0.01
+
+   
+
+.. data:: kilo
+   :annotation: = 1000.0
+
+   
+
+.. data:: mega
+   
+
+   
+
+.. data:: giga
+   
+
+   
+
+.. data:: deg2rad
+   
+
+   
+
+.. data:: rad2deg
+   
+
+   
+

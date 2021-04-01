@@ -1,0 +1,42 @@
+:mod:`slurm.googledrive`
+========================
+
+.. py:module:: slurm.googledrive
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   slurm.googledrive.GoogleDrive
+
+
+
+.. class:: GoogleDrive
+
+   Allow downloading of sharable files using their link
+
+   .. method:: url_to_id(self, url)
+
+
+   .. method:: download(self, link, destination=None, dumpHeader=False, download=True)
+
+      :link: shared link of file from google drive
+      :destination: file name if you want over ride the original OR zipped files
+      :dumpHeader: debug, print response info
+      :download: debug, do everything but actually download file
+
+      Return: (bool, filename)
+
+
+   .. method:: get_confirm_token(self, response)
+
+
+   .. method:: save_response_content(self, response, destination)
+
+
+

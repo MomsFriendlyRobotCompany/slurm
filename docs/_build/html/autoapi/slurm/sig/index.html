@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>slurm.sig &#8212; slurm 0.4.6 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="slurm.simple_process" href="../simple_process/index.html" />
+    <link rel="prev" title="slurm.rate" href="../rate/index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../../index.html">
+    <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">this is my description</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=walchko&repo=slurm&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">API Reference</a><ul>
+  <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm</span></code></a><ul>
+      <li>Previous: <a href="../rate/index.html" title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm.rate</span></code></a></li>
+      <li>Next: <a href="../simple_process/index.html" title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm.simple_process</span></code></a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-slurm.sig">
+<span id="slurm-sig"></span><h1><a class="reference internal" href="#module-slurm.sig" title="slurm.sig"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm.sig</span></code></a><a class="headerlink" href="#module-slurm.sig" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#slurm.sig.SignalCatch" title="slurm.sig.SignalCatch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SignalCatch</span></code></a></p></td>
+<td><p>Catches SIGINT and SIGTERM signals and sets kill = True</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="slurm.sig.SignalCatch">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">slurm.sig.</span></code><code class="sig-name descname"><span class="pre">SignalCatch</span></code><a class="reference internal" href="../../../_modules/slurm/sig.html#SignalCatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#slurm.sig.SignalCatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Catches SIGINT and SIGTERM signals and sets kill = True</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">kill</span> -l
+ <span class="m">1</span><span class="o">)</span> SIGHUP     <span class="m">2</span><span class="o">)</span> SIGINT       <span class="m">3</span><span class="o">)</span> SIGQUIT     <span class="m">4</span><span class="o">)</span> SIGILL
+ <span class="m">5</span><span class="o">)</span> SIGTRAP    <span class="m">6</span><span class="o">)</span> SIGABRT      <span class="m">7</span><span class="o">)</span> SIGEMT      <span class="m">8</span><span class="o">)</span> SIGFPE
+ <span class="m">9</span><span class="o">)</span> SIGKILL    <span class="m">10</span><span class="o">)</span> SIGBUS     <span class="m">11</span><span class="o">)</span> SIGSEGV    <span class="m">12</span><span class="o">)</span> SIGSYS
+<span class="m">13</span><span class="o">)</span> SIGPIPE    <span class="m">14</span><span class="o">)</span> SIGALRM    <span class="m">15</span><span class="o">)</span> SIGTERM    <span class="m">16</span><span class="o">)</span> SIGURG
+<span class="m">17</span><span class="o">)</span> SIGSTOP    <span class="m">18</span><span class="o">)</span> SIGTSTP    <span class="m">19</span><span class="o">)</span> SIGCONT    <span class="m">20</span><span class="o">)</span> SIGCHLD
+<span class="m">21</span><span class="o">)</span> SIGTTIN    <span class="m">22</span><span class="o">)</span> SIGTTOU    <span class="m">23</span><span class="o">)</span> SIGIO      <span class="m">24</span><span class="o">)</span> SIGXCPU
+<span class="m">25</span><span class="o">)</span> SIGXFSZ    <span class="m">26</span><span class="o">)</span> SIGVTALRM  <span class="m">27</span><span class="o">)</span> SIGPROF    <span class="m">28</span><span class="o">)</span> SIGWINCH
+<span class="m">29</span><span class="o">)</span> SIGINFO    <span class="m">30</span><span class="o">)</span> SIGUSR1    <span class="m">31</span><span class="o">)</span> SIGUSR2
+</pre></div>
+</div>
+<p><a class="reference external" href="https://stackoverflow.com/questions/18499497/how-to-process-sigterm-signal-gracefully">stackoverflow</a></p>
+<dl class="py attribute">
+<dt id="slurm.sig.SignalCatch.kill_init">
+<code class="sig-name descname"><span class="pre">kill_init</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#slurm.sig.SignalCatch.kill_init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="slurm.sig.SignalCatch.kill">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">kill</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#slurm.sig.SignalCatch.kill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the kill value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="slurm.sig.SignalCatch.kill_signals">
+<code class="sig-name descname"><span class="pre">kill_signals</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/slurm/sig.html#SignalCatch.kill_signals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#slurm.sig.SignalCatch.kill_signals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2014, Kevin Walchko.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/autoapi/slurm/sig/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

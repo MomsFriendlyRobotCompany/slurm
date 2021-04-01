@@ -4,4 +4,3 @@ dist
 ._*
 .*_cache
 *.lock
-docs/_build/*

@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>slurm.simple_process &#8212; slurm 0.4.6 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">this is my description</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=walchko&repo=slurm&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for slurm.simple_process</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">##############################################</span>
+<span class="c1"># The MIT License (MIT)</span>
+<span class="c1"># Copyright (c) 2018 Kevin Walchko</span>
+<span class="c1"># see LICENSE for full details</span>
+<span class="c1">##############################################</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">from</span> <span class="nn">colorama</span> <span class="kn">import</span> <span class="n">Fore</span>
+<span class="kn">import</span> <span class="nn">attr</span>
+
+
+<div class="viewcode-block" id="SimpleProcess"><a class="viewcode-back" href="../../autoapi/slurm/simple_process/index.html#slurm.simple_process.SimpleProcess">[docs]</a><span class="nd">@attr</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">SimpleProcess</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A simple class to help processes start/stop easily. It is main intended for</span>
+<span class="sd">    testing and some simple things.</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        p = SimpleProcess()       # create process</span>
+<span class="sd">        p.start(function)         # start the process, runs function</span>
+<span class="sd">        ...                       # stuff happens</span>
+<span class="sd">        p.join()                  # time to go ... bye!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_ps</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">pid</span>
+
+<div class="viewcode-block" id="SimpleProcess.is_alive"><a class="viewcode-back" href="../../autoapi/slurm/simple_process/index.html#slurm.simple_process.SimpleProcess.is_alive">[docs]</a>    <span class="k">def</span> <span class="nf">is_alive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the process is still running&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="SimpleProcess.terminate"><a class="viewcode-back" href="../../autoapi/slurm/simple_process/index.html#slurm.simple_process.SimpleProcess.terminate">[docs]</a>    <span class="k">def</span> <span class="nf">terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Terminate the process&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SimpleProcess.start"><a class="viewcode-back" href="../../autoapi/slurm/simple_process/index.html#slurm.simple_process.SimpleProcess.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;simple_process&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Starts the process</span>
+<span class="sd">          :func: function for multi-process</span>
+<span class="sd">          :name: what to call the process</span>
+<span class="sd">          :kwargs: args to pass function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;kwargs&#39;</span><span class="p">]</span>  <span class="c1"># WTF???</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">func</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&gt;&gt; </span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">GREEN</span><span class="si">}</span><span class="s1">Started</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">pid</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SimpleProcess.join"><a class="viewcode-back" href="../../autoapi/slurm/simple_process/index.html#slurm.simple_process.SimpleProcess.join">[docs]</a>    <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Attempts to join() the process with the given timeout. If that fails, it calls</span>
+<span class="sd">        terminate().</span>
+
+<span class="sd">            :timeout: how long to wait for join() in seconds.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&gt;&gt; </span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RED</span><span class="si">}</span><span class="s1">Stopping</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">pid</span><span class="si">}</span><span class="s1">] ...&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ps</span> <span class="o">=</span> <span class="kc">None</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2014, Kevin Walchko.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

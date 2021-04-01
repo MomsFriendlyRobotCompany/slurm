@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>slurm.googledrive &#8212; slurm 0.4.6 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="slurm.network" href="../network/index.html" />
+    <link rel="prev" title="slurm.files" href="../files/index.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../../index.html">
+    <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">this is my description</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=walchko&repo=slurm&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">API Reference</a><ul>
+  <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm</span></code></a><ul>
+      <li>Previous: <a href="../files/index.html" title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm.files</span></code></a></li>
+      <li>Next: <a href="../network/index.html" title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm.network</span></code></a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-slurm.googledrive">
+<span id="slurm-googledrive"></span><h1><a class="reference internal" href="#module-slurm.googledrive" title="slurm.googledrive"><code class="xref py py-mod docutils literal notranslate"><span class="pre">slurm.googledrive</span></code></a><a class="headerlink" href="#module-slurm.googledrive" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#slurm.googledrive.GoogleDrive" title="slurm.googledrive.GoogleDrive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GoogleDrive</span></code></a></p></td>
+<td><p>Allow downloading of sharable files using their link</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="slurm.googledrive.GoogleDrive">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">slurm.googledrive.</span></code><code class="sig-name descname"><span class="pre">GoogleDrive</span></code><a class="reference internal" href="../../../_modules/slurm/googledrive.html#GoogleDrive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#slurm.googledrive.GoogleDrive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow downloading of sharable files using their link</p>
+<dl class="py method">
+<dt id="slurm.googledrive.GoogleDrive.url_to_id">
+<code class="sig-name descname"><span class="pre">url_to_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/slurm/googledrive.html#GoogleDrive.url_to_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#slurm.googledrive.GoogleDrive.url_to_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="slurm.googledrive.GoogleDrive.download">
+<code class="sig-name descname"><span class="pre">download</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dumpHeader</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/slurm/googledrive.html#GoogleDrive.download"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#slurm.googledrive.GoogleDrive.download" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Link</dt>
+<dd class="field-odd"><p>shared link of file from google drive</p>
+</dd>
+<dt class="field-even">Destination</dt>
+<dd class="field-even"><p>file name if you want over ride the original OR zipped files</p>
+</dd>
+<dt class="field-odd">DumpHeader</dt>
+<dd class="field-odd"><p>debug, print response info</p>
+</dd>
+<dt class="field-even">Download</dt>
+<dd class="field-even"><p>debug, do everything but actually download file</p>
+</dd>
+</dl>
+<p>Return: (bool, filename)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="slurm.googledrive.GoogleDrive.get_confirm_token">
+<code class="sig-name descname"><span class="pre">get_confirm_token</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/slurm/googledrive.html#GoogleDrive.get_confirm_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#slurm.googledrive.GoogleDrive.get_confirm_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="slurm.googledrive.GoogleDrive.save_response_content">
+<code class="sig-name descname"><span class="pre">save_response_content</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/slurm/googledrive.html#GoogleDrive.save_response_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#slurm.googledrive.GoogleDrive.save_response_content" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2014, Kevin Walchko.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../_sources/autoapi/slurm/googledrive/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

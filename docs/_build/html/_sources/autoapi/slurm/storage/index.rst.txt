@@ -1,0 +1,42 @@
+:mod:`slurm.storage`
+====================
+
+.. py:module:: slurm.storage
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   slurm.storage.get_size
+   slurm.storage.write
+   slurm.storage.read
+
+
+.. function:: get_size(fname)
+
+   Returns the file size
+
+
+.. function:: write(fname, data, fmt=None, comments=None)
+
+   Writes a Pickle, Yaml or Json file
+   :filename: file name
+   :data: data to be written
+   :fmt: [optional] format (pickle, yaml or json)
+
+
+.. function:: read(fname, fmt=None)
+
+   Reads a Pickle, Yaml or Json file
+       :fname: file name
+       :fmt: [optional] format (pickle, yaml or json)
+   return
+       :data: dictionary of data
+
+

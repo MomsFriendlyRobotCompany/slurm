@@ -1,0 +1,40 @@
+:mod:`slurm.circular_buffer`
+============================
+
+.. py:module:: slurm.circular_buffer
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   slurm.circular_buffer.CircularBuffer
+
+
+
+.. class:: CircularBuffer(size, mmax=100.0, mmin=0.0)
+
+
+
+
+   .. method:: push(self, value)
+
+      append an element
+
+
+   .. method:: get_all(self)
+
+      return a list of all the elements
+
+
+   .. method:: get_last(self)
+
+
+   .. method:: get_first(self)
+
+
+

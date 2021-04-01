@@ -1,0 +1,23 @@
+:mod:`slurm`
+============
+
+.. py:module:: slurm
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   circular_buffer/index.rst
+   constants/index.rst
+   files/index.rst
+   googledrive/index.rst
+   network/index.rst
+   rate/index.rst
+   sig/index.rst
+   simple_process/index.rst
+   storage/index.rst
+
+

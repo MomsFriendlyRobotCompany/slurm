@@ -1,0 +1,32 @@
+:mod:`slurm.rate`
+=================
+
+.. py:module:: slurm.rate
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   slurm.rate.Rate
+
+
+
+.. class:: Rate(hertz)
+
+
+   Uses sleep to keep a desired message/sample rate.
+
+   .. method:: sleep(self)
+
+      This uses sleep to delay the function. If your loop is faster than your
+      desired Hertz, then this will calculate the time difference so sleep
+      keeps you close to you desired hertz. If your loop takes longer than
+      your desired hertz, then it doesn't sleep.
+
+
+

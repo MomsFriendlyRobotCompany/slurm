@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>slurm.googledrive &#8212; slurm 0.4.6 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">this is my description</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=walchko&repo=slurm&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for slurm.googledrive</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">##############################################</span>
+<span class="c1"># The MIT License (MIT)</span>
+<span class="c1"># Copyright (c) 2014 Kevin Walchko</span>
+<span class="c1"># see LICENSE for full details</span>
+<span class="c1">##############################################</span>
+<span class="c1"># some code taken from here:</span>
+<span class="c1"># https://github.com/nsadawi/Download-Large-File-From-Google-Drive-Using-Python/blob/master/Download-Large-File-from-Google-Drive.ipynb</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">mimetypes</span>
+<span class="kn">from</span> <span class="nn">colorama</span> <span class="kn">import</span> <span class="n">Fore</span>
+<span class="c1"># from collections import namedtuple</span>
+
+<span class="c1"># FileInfo = namedtuple(&quot;FileInfo&quot;, &quot;filename bits&quot;)</span>
+
+
+<div class="viewcode-block" id="GoogleDrive"><a class="viewcode-back" href="../../autoapi/slurm/googledrive/index.html#slurm.googledrive.GoogleDrive">[docs]</a><span class="k">class</span> <span class="nc">GoogleDrive</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Allow downloading of sharable files using their link</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get list of mime types</span>
+    <span class="n">_mimes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mimetypes</span><span class="o">.</span><span class="n">types_map</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<div class="viewcode-block" id="GoogleDrive.url_to_id"><a class="viewcode-back" href="../../autoapi/slurm/googledrive/index.html#slurm.googledrive.GoogleDrive.url_to_id">[docs]</a>    <span class="k">def</span> <span class="nf">url_to_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="GoogleDrive.download"><a class="viewcode-back" href="../../autoapi/slurm/googledrive/index.html#slurm.googledrive.GoogleDrive.download">[docs]</a>    <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dumpHeader</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :link: shared link of file from google drive</span>
+<span class="sd">        :destination: file name if you want over ride the original OR zipped files</span>
+<span class="sd">        :dumpHeader: debug, print response info</span>
+<span class="sd">        :download: debug, do everything but actually download file</span>
+
+<span class="sd">        Return: (bool, filename)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_to_id</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+        <span class="n">URL</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/uc?export=download&quot;</span>
+
+        <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;id&#39;</span> <span class="p">:</span> <span class="nb">id</span> <span class="p">},</span> <span class="n">stream</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># IF file is not found (200), then return</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RED</span><span class="si">}</span><span class="s2">*** FAIL &lt;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&gt; ***</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="c1"># DEBUG: print out response header info</span>
+        <span class="k">if</span> <span class="n">dumpHeader</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">GREEN</span><span class="si">}{</span><span class="n">k</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------------------&quot;</span><span class="p">)</span>
+
+        <span class="c1"># IF the link isn&#39;t shared, then this is set</span>
+        <span class="k">if</span> <span class="s2">&quot;X-Frame-Options&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;X-Frame-Options&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DENY&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RED</span><span class="si">}</span><span class="s2">*** Google link is not shareable ***</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="c1"># for some reason, typical file types have sizes listed, but of</span>
+        <span class="c1"># zip files, it isn&#39;t listed ... why?</span>
+        <span class="k">if</span> <span class="s2">&quot;Content-Length&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+            <span class="n">bits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Length&quot;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bits</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">destination</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">ct</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mimes</span><span class="p">:</span>
+                <span class="n">ff</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Disposition&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ff</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;filename=&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">destination</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">destination</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No file name found in file&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s2">&quot;Content-Encoding&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Encoding&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;gzip&quot;</span><span class="p">:</span>
+                    <span class="n">destination</span> <span class="o">=</span> <span class="s2">&quot;download.zip&quot;</span>
+
+        <span class="n">token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_confirm_token</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">destination</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># raise Exception(&quot;File name is None&quot;)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RED</span><span class="si">}</span><span class="s2">*** File name is None ***</span><span class="si">{</span><span class="n">Fore</span><span class="o">.</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+
+        <span class="c1"># DEBUG: do everything, but don&#39;t download the file</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">download</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">destination</span>
+
+        <span class="k">if</span> <span class="n">token</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;id&#39;</span> <span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s1">&#39;confirm&#39;</span> <span class="p">:</span> <span class="n">token</span> <span class="p">}</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span> <span class="n">stream</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_response_content</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">destination</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">destination</span></div>
+
+<div class="viewcode-block" id="GoogleDrive.get_confirm_token"><a class="viewcode-back" href="../../autoapi/slurm/googledrive/index.html#slurm.googledrive.GoogleDrive.get_confirm_token">[docs]</a>    <span class="k">def</span> <span class="nf">get_confirm_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;download_warning&#39;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">value</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="GoogleDrive.save_response_content"><a class="viewcode-back" href="../../autoapi/slurm/googledrive/index.html#slurm.googledrive.GoogleDrive.save_response_content">[docs]</a>    <span class="k">def</span> <span class="nf">save_response_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">destination</span><span class="p">):</span>
+        <span class="n">CHUNK_SIZE</span> <span class="o">=</span> <span class="mi">32768</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">CHUNK_SIZE</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span> <span class="c1"># filter out keep-alive new chunks</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2014, Kevin Walchko.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
