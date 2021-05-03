@@ -20,7 +20,7 @@ class GoogleDrive:
     """
 
     # get list of mime types
-    mimes = list(mimetypes.types_map.values())
+    _mimes = list(mimetypes.types_map.values())
 
     def url_to_id(self, url):
         x = url.split("/")
@@ -28,10 +28,10 @@ class GoogleDrive:
 
     def download(self, link, destination=None, dumpHeader=False, download=True):
         """
-        link: shared link of file from google drive
-        destination: file name if you want over ride the original OR zipped files
-        dumpHeader: debug, print response info
-        download: debug, do everything but actually download file
+        :link: shared link of file from google drive
+        :destination: file name if you want over ride the original OR zipped files
+        :dumpHeader: debug, print response info
+        :download: debug, do everything but actually download file
 
         Return: (bool, filename)
         """
@@ -68,7 +68,7 @@ class GoogleDrive:
 
         if destination is None:
             ct = response.headers["Content-Type"]
-            if ct in self.mimes:
+            if ct in self._mimes:
                 ff = response.headers["Content-Disposition"]
                 for s in ff.split(";"):
                     if s.find("filename=") >= 0:
