@@ -49,7 +49,7 @@ autoapi_options = [
     # 'special-members',
     # 'imported-members'
 ]
-autoapi_dirs = ['../slurm']
+autoapi_dirs = ['../../slurm']
 autoapi_type = "python"
 # autoapi_template_dir = '_templates'
 
@@ -96,3 +96,5 @@ html_static_path = ['_static']
 #             'auto_code_block': True,
 #             }, True)
 #     app.add_transform(AutoStructify)
+# html_baseurl = "../tt"
+add_module_names = False

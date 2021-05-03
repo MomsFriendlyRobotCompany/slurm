@@ -1,4 +1,4 @@
-.. mdinclude:: ../readme.md
+.. mdinclude:: ../../readme.md
 
 .. toctree::
    :hidden:
