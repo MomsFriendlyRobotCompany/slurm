@@ -11,6 +11,28 @@
 
 This is a collection of tools I have used over the years collected together.
 
+## Signal Catcher
+
+`SignalCatch` catches `SIGINT` and `SIGTERM` signals and sets
+`SignalCatch.kill` to `True`.
+
+## Simple Processes
+
+```python
+def func():
+    # some simple process that does something
+    for _ in range(10):
+        print(".", end="")
+        time.sleep(0.1)
+    print("")
+
+def test_process():
+    p = SimpleProcess()
+    p.start(func)
+    print(p)
+    p.join(timeout=2.0) # if not ended in 2 sec, will terminate() the process
+```
+
 ## Storage
 
 ```python
@@ -92,18 +114,6 @@ find("/path/to/somewhere", "file_to_find") # -> list
 find("/path/to/somewhere", "*.html") # -> list
 
 run("ls -alh") # -> output
-```
-
-## Google Drive Access
-
-This only supports downloading shared file links.
-
-```python
-from slurm.googledrive import GoogleDrive
-
-url = "shared link from google drive"
-gd = GoogleDrive()
-gd.download(url, dumpHeader=True)
 ```
 
 # MIT License
