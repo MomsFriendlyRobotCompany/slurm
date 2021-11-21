@@ -8,7 +8,10 @@
 import yaml
 import pickle
 import os
-import simplejson as json
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 
 def get_size(fname):
@@ -27,7 +30,7 @@ def _storage_read(fname, func, access='r'):
 
     return data
 
-def _storage_write(fname, func, data, access='w', comments=None):
+def _storage_write(fname, func, data, access='w', comments=None, compress=False):
     fname = os.path.expanduser(fname)
     # print(fname)
     try:
@@ -56,8 +59,10 @@ def write(fname, data, fmt=None, comments=None):
         _storage_write(fname, json.dump, data)
     elif fmt == "pickle":
         _storage_write(fname, pickle.dump, data, 'wb')
+    elif fmt == "pickle.gz":
+        _storage_write(fname, pickle.dump, data, 'wb', compress=True)
     else:
-        raise Exception()
+        raise Exception(f"Unknown format: {fmt}")
 
 def read(fname, fmt=None):
     """
