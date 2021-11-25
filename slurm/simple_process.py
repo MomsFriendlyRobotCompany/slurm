@@ -6,10 +6,10 @@
 ##############################################
 import multiprocessing as mp
 from colorama import Fore
-import attr
+# import attr
 
 
-@attr.s(slots=True)
+# @attr.s(slots=True)
 class SimpleProcess:
     """
     A simple class to help processes start/stop easily. It is main intended for
@@ -22,7 +22,8 @@ class SimpleProcess:
         ...                       # stuff happens
         p.join()                  # time to go ... bye!
     """
-    _ps = attr.ib(init=False, default=None)
+    # _ps = attr.ib(init=False, default=None)
+    _ps = None
 
     def __del__(self):
         if self._ps:

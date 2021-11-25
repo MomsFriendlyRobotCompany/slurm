@@ -6,11 +6,14 @@
 ##############################################
 from slurm import network, storage
 from slurm.files import mkdir, rmdir, run, rm, touch, file_size
-from slurm.simple_process import SimpleProcess
-from slurm.rate import Rate
+from slurm import SimpleProcess
+from slurm import Rate
+from slurm import scistorage
 import os
 from math import pi
 import time
+from collections import namedtuple
+import random
 
 
 # Rate =====================================================================
@@ -63,6 +66,32 @@ def test_yaml():
 # def test_user_home():
 #     file_func('~/github/slurm/tests/test2.pickle')
 
+# SciStorage ===============================================================
+
+def test_sci():
+    T = namedtuple("T","a")
+    data = [random.uniform(-10,10) for _ in range(10)]
+
+    fname = "test.dil"
+    info  = {"name":"test"}
+
+    scistorage.write(info, data, fname)
+    d = scistorage.read(fname)
+    assert d["data"] == data, f"Uncompressed: {d} != {data}"
+    assert d["info"] == info
+
+    fname = os.path.expanduser(fname)
+    os.remove(fname)
+
+    fname += ".gz"
+
+    scistorage.write(info, data, fname)
+    d = scistorage.read(fname)
+    assert d["data"] == data, f"Compressed: {d} != {data}"
+    assert d["info"] == info
+
+    fname = os.path.expanduser(fname)
+    os.remove(fname)
 
 # Process ==================================================================
 

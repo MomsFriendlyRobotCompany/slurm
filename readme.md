@@ -16,9 +16,21 @@ This is a collection of tools I have used over the years collected together.
 `SignalCatch` catches `SIGINT` and `SIGTERM` signals and sets
 `SignalCatch.kill` to `True`.
 
+```python
+from slurm import SignalCatch
+
+sig = SignalCatch()
+
+while True:
+    if sig.kill == True:
+        exit(0)
+```
+
 ## Simple Processes
 
 ```python
+from slurm import SimpleProcess
+
 def func():
     # some simple process that does something
     for _ in range(10):
@@ -76,13 +88,67 @@ which will produce:
 a: 1
 ```
 
+## Science Storage
+
+Over the years I have collected a lot of data, but not completely documented
+the sensors or their settings. I am trying to setup a data file that can:
+
+- use primarly standard python libraries to read (exception `dill` for `namedtuples`)
+- self documenting with info and `namedtuples`
+- can use `gzip` for compression of large files
+
+```python
+from slurm import scistorage
+from collections import namedtuple
+
+Sensor = namedtuple("Sensor","x y z")
+
+# document sensor setting in this data file
+info = {
+    "TFmini": {
+        "min": 0.3,
+        "max": 12.0,
+        "fov_deg": 4.6,
+        "units": "m"
+    },
+    "LSM6DSOX": {
+        "accel": {
+            "range": (-4,4),
+            "units": "g"
+        },
+        "gyro": {
+            "range": (-2000,2000),
+            "units": "dps"
+        }
+    },
+    "LIS3MDL": {
+        "range": (-4,4), # 4 gauss = 400 uT
+        "units": "gauss"
+    },
+    "DPS310": {
+        "sensors": ("temperature", "pressure")
+    }
+}
+
+data = [] # some data stored in an array or deque
+for i in range(100):
+    data.append(Sensor(i,i,i)) # pretend you got some data from a sensor
+
+
+scistorage.write(info, data, "data.dil.gz") # *.gz uses gzip compression
+
+bag = scistorage.read("data.dil.gz")
+print(bag["info"])
+print(bag["data"])
+```
+
 ## Network
 
 ```python
 from slurm import network
 
-ip = network.get_ip()
-print(ip)
+print(network.get_ip()) # -> ip_address
+print(network.host()) # -> (hostname, ip_address)
 ```
 
 ## Sleep Rate
@@ -91,7 +157,7 @@ Will sleep for a prescribed amount of time inside of a loop
 irregardless of how long the loop takes
 
 ```python
-from slurm.rate import Rate
+from slurm import Rate
 
 rate = Rate(10)  # let loop run at 10 Hz
 
