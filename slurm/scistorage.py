@@ -4,7 +4,7 @@
 # Copyright (c) 2014 Kevin Walchko
 # see LICENSE for full details
 ##############################################
-import dill
+import pickle as dill
 from pathlib import Path
 import gzip
 
@@ -14,13 +14,17 @@ def compression(path):
     Based on filename, is compression being used?
     """
     compress = None
+    if not isinstance(path, Path):
+        path = Path(path)
+
     ext = path.suffix
+
     if ext == ".gz":
         compress = True
-    elif ext == ".dil":
+    elif ext == ".pkl":
         compress = False
     else:
-        raise Exception(f"invalid file extension [{ext}], must be .dil or .dil.gz")
+        raise Exception(f"invalid file extension [{ext}], must be .pkl or .pkl.gz")
 
     return compress
 

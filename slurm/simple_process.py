@@ -5,7 +5,7 @@
 # see LICENSE for full details
 ##############################################
 import multiprocessing as mp
-from colorama import Fore
+# from colorama import Fore
 # import attr
 
 
@@ -62,7 +62,7 @@ class SimpleProcess:
             self._ps = mp.Process(name=name, target=func)
 
         self._ps.start()
-        print(f'>> {Fore.GREEN}Started{Fore.RESET}: {self._ps.name}[{self._ps.pid}]')
+        # print(f'>> {Fore.GREEN}Started{Fore.RESET}: {self._ps.name}[{self._ps.pid}]')
 
     def join(self, timeout=1.0):
         """
@@ -71,7 +71,7 @@ class SimpleProcess:
 
             :timeout: how long to wait for join() in seconds.
         """
-        print(f'>> {Fore.RED}Stopping{Fore.RESET}: {self._ps.name}[{self._ps.pid}] ...')
+        # print(f'>> {Fore.RED}Stopping{Fore.RESET}: {self._ps.name}[{self._ps.pid}] ...')
         if self._ps:
             self._ps.join(timeout)
             if self._ps.is_alive():

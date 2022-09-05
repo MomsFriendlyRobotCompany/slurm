@@ -93,7 +93,7 @@ a: 1
 Over the years I have collected a lot of data, but not completely documented
 the sensors or their settings. I am trying to setup a data file that can:
 
-- use primarly standard python libraries to read (exception `dill` for `namedtuples`)
+- use primarly standard python libraries to read data files
 - self documenting with info and `namedtuples`
 - can use `gzip` for compression of large files
 
@@ -104,6 +104,8 @@ from collections import namedtuple
 Sensor = namedtuple("Sensor","x y z")
 
 # document sensor setting in this data file
+# there is no real format for this, just put good
+# stuff here
 info = {
     "TFmini": {
         "min": 0.3,
@@ -135,9 +137,9 @@ for i in range(100):
     data.append(Sensor(i,i,i)) # pretend you got some data from a sensor
 
 
-scistorage.write(info, data, "data.dil.gz") # *.gz uses gzip compression
+scistorage.write(info, data, "data.pkl.gz") # *.gz uses gzip compression
 
-bag = scistorage.read("data.dil.gz")
+bag = scistorage.read("data.pkl.gz")
 print(bag["info"])
 print(bag["data"])
 ```

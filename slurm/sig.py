@@ -5,7 +5,7 @@
 # see LICENSE for full details
 ##############################################
 import signal
-from colorama import Back
+# from colorama import Back
 
 
 class SignalCatch:
@@ -56,7 +56,7 @@ class SignalCatch:
         if signum == 2:
             self.kill = True
             # print(Back.RED + ">> Got signal[{}]".format(signum) + Style.RESET_ALL)
-            print(f"{Back.RED}>> Got signal[{signum}]{Back.RESET_ALL}")
-        else:
-            # print(Back.YELLOW + ">> Got signal[{}]".format(signum) + Style.RESET_ALL)
-            print(f"{Back.YELLOW}>> Got signal[{signum}]{Back.RESET_ALL}")
+            # print(f"{Back.RED}>> Got signal[{signum}]{Back.RESET_ALL}")
+        # else:
+        #     # print(Back.YELLOW + ">> Got signal[{}]".format(signum) + Style.RESET_ALL)
+        #     print(f"{Back.YELLOW}>> Got signal[{signum}]{Back.RESET_ALL}")

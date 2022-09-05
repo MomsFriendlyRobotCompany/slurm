@@ -10,7 +10,7 @@ import platform        # macOS or windows
 import shutil          # move and delete files/folders
 import pathlib         # recursive file finding
 from math import ceil  # file size
-from colorama import Fore
+# from colorama import Fore
 
 
 def run(cmd):
@@ -40,6 +40,7 @@ def rm(fname):
     """Removes (deletes) a file or list of files"""
     if fname is None:
         # print(f"{Fore.RED}*** No file to remove ***{Fore.RESET}")
+        raise Exception("No file name given")
         return
     if not isinstance(fname, list):
         fname = [fname]
@@ -53,8 +54,10 @@ def rm(fname):
 
 
 def find(path, fname):
-    """Given a path, this will recursively search for a file (bob.txt) or
-    pattern (\*.txt). It returns an array of found file paths."""
+    """
+    Given a path, this will recursively search for a file (bob.txt) or
+    pattern (*.txt). It returns an array of found file paths.
+    """
     fn = []
     for p in pathlib.Path(path).rglob(fname):
         fn.append(p)

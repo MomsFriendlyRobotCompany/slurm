@@ -72,7 +72,7 @@ def test_sci():
     T = namedtuple("T","a")
     data = [random.uniform(-10,10) for _ in range(10)]
 
-    fname = "test.dil"
+    fname = "test.pkl"
     info  = {"name":"test"}
 
     scistorage.write(info, data, fname)
