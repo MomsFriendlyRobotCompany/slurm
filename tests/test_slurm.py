@@ -4,13 +4,7 @@
 # Copyright (c) 2020 Kevin Walchko
 # see LICENSE for full details
 ##############################################
-from slurm import network, storage
-# from slurm.files import mkdir, rmdir, run, rm, touch, file_size
-# from slurm import SimpleProcess
-# from slurm import Rate
-from slurm import scistorage
 from slurm import *
-from slurm.files import *
 import os
 from math import pi
 import time

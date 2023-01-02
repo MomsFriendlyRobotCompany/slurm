@@ -2,7 +2,6 @@
 
 # Slurm
 
-
 [![Actions Status](https://github.com/MomsFriendlyRobotCompany/slurm/workflows/walchko%20pytest/badge.svg)](https://github.com/MomsFriendlyRobotCompany/slurm/actions)
 ![GitHub](https://img.shields.io/github/license/MomsFriendlyRobotCompany/slurm)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/slurm)
@@ -31,7 +30,8 @@ while True:
 ```python
 from slurm import SimpleProcess
 
-def func():
+def func(a):
+    print(a)
     # some simple process that does something
     for _ in range(10):
         print(".", end="")
@@ -40,9 +40,11 @@ def func():
 
 def test_process():
     p = SimpleProcess()
-    p.start(func)
-    print(p)
+    p.start(func, args=(42))
+    print(p.name, p.pid)
     p.join(timeout=2.0) # if not ended in 2 sec, will terminate() the process
+    if p.is_alive():
+        p.terminate()
 ```
 
 ## Storage
