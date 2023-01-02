@@ -5,10 +5,12 @@
 # see LICENSE for full details
 ##############################################
 from slurm import network, storage
-from slurm.files import mkdir, rmdir, run, rm, touch, file_size
-from slurm import SimpleProcess
-from slurm import Rate
+# from slurm.files import mkdir, rmdir, run, rm, touch, file_size
+# from slurm import SimpleProcess
+# from slurm import Rate
 from slurm import scistorage
+from slurm import *
+from slurm.files import *
 import os
 from math import pi
 import time
@@ -98,7 +100,7 @@ def test_sci():
 def func():
     for _ in range(10):
         print(".", end="")
-        time.sleep(0.1)
+        time.sleep(0.01)
     print("")
 
 def test_process():
@@ -109,6 +111,22 @@ def test_process():
 
     assert True
 
+def func2(a,b,c):
+    # for _ in range(10):
+    #     print(".", end="")
+    #     time.sleep(0.1)
+    # print("")
+    assert a == 10
+    assert b == 20
+    assert c == 30
+
+def test_process_args():
+    p = SimpleProcess()
+    p.start(func2, args=(10,20,30,))
+    print(p)
+    p.join()
+
+    assert True
 
 # Files ====================================================================
 

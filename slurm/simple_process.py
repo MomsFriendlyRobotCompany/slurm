@@ -5,11 +5,9 @@
 # see LICENSE for full details
 ##############################################
 import multiprocessing as mp
-# from colorama import Fore
-# import attr
+from dataclasses import dataclass
 
-
-# @attr.s(slots=True)
+@dataclass
 class SimpleProcess:
     """
     A simple class to help processes start/stop easily. It is main intended for
@@ -49,15 +47,15 @@ class SimpleProcess:
         if self._ps:
             self._ps.terminate()
 
-    def start(self, func, name='simple_process', **kwargs):
+    def start(self, func, name='simple_process', args=None, **kwargs):
         """Starts the process
           :func: function for multi-process
           :name: what to call the process
           :kwargs: args to pass function
         """
-        if kwargs:
-            kwargs = kwargs['kwargs']  # WTF???
-            self._ps = mp.Process(name=name, target=func, kwargs=kwargs)
+        if args:
+            # kwargs = kwargs['kwargs']  # WTF???
+            self._ps = mp.Process(name=name, target=func, args=args) #, kwargs=kwargs)
         else:
             self._ps = mp.Process(name=name, target=func)
 
