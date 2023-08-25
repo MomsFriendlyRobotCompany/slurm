@@ -1,6 +1,9 @@
 *.pyc
 dist
+build
 *.egg-info
 ._*
 .*_cache
 *.lock
+__pycache__
+
