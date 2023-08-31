@@ -6,4 +6,6 @@ build
 .*_cache
 *.lock
 __pycache__
+archive
+dev
 
