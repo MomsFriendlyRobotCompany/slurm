@@ -1,4 +1,8 @@
-
+/**************************************\
+ * The MIT License (MIT)
+ * Copyright (c) 2014 Kevin Walchko
+ * see LICENSE for full details
+\**************************************/
 #pragma once
 
 
@@ -8,7 +12,7 @@ namespace slurm {
 
 namespace fs = std::filesystem;
 
-fs::path get_temp(const std::string& file) {
+fs::path temp_file(const std::string& file) {
   return std::filesystem::temp_directory_path() / file;
 }
 

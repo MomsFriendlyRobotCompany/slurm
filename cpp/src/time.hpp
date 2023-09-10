@@ -10,7 +10,6 @@
 #include <iomanip>
 #include <sstream> // ostringstream
 #include <thread>  // sleep_for
-#include <thread>
 
 
 inline void msleep(int msec) {
@@ -32,6 +31,37 @@ static std::string time_date() {
   std::ostringstream oss;
   oss << std::put_time(&lt, "%d-%m-%Y %H:%M:%S");
   return oss.str();
+}
+
+
+static uint64_t microsSinceEpoch() {
+  // struct timeval tv;
+  // uint64_t micros = 0;
+  // gettimeofday(&tv, NULL);
+  // micros = ((uint64_t)tv.tv_sec) * 1000000 + tv.tv_usec;
+
+  uint64_t micros = 0;
+  // using namespace std::chrono;
+  micros = duration_cast<std::chrono::microseconds>(
+               std::chrono::system_clock::now().time_since_epoch())
+               .count();
+
+  return micros;
+}
+
+static uint64_t millis() {
+  // struct timeval tv;
+  // uint64_t micros = 0;
+  // gettimeofday(&tv, NULL);
+  // micros = ((uint64_t)tv.tv_sec) * 1000000 + tv.tv_usec;
+
+  uint64_t msec = 0;
+  // using namespace std::chrono;
+  msec = duration_cast<std::chrono::milliseconds>(
+             std::chrono::system_clock::now().time_since_epoch())
+             .count();
+
+  return msec;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -68,74 +98,74 @@ static std::string time_date() {
 
 //////////////////////////////////////////////////////////////////////
 
-/*
- Allows you to set a rate in hertz for a loop to run and this class
- keeps track of it.
+// /*
+//  Allows you to set a rate in hertz for a loop to run and this class
+//  keeps track of it.
 
- Rate r(10); // sets 10 Hz
- while (1){
-    // do something
-    r.sleep();  // will adjust sleep time to keep 10Hz
- }
- */
-class Rate {
-public:
-  Rate(double hertz) {
-    last_time = time_point_cast<std::chrono::milliseconds>(
-        std::chrono::system_clock::now());
-    // dt = std::chrono::milliseconds(int(1000/hertz));
-    dt = std::chrono::milliseconds(int(1000 / hertz));
-  }
+//  Rate r(10); // sets 10 Hz
+//  while (1){
+//     // do something
+//     r.sleep();  // will adjust sleep time to keep 10Hz
+//  }
+//  */
+// class Rate {
+// public:
+//   Rate(double hertz) {
+//     last_time = time_point_cast<std::chrono::milliseconds>(
+//         std::chrono::system_clock::now());
+//     // dt = std::chrono::milliseconds(int(1000/hertz));
+//     dt = std::chrono::milliseconds(int(1000 / hertz));
+//   }
 
-  void sleep(void) {
-    auto now = time_point_cast<std::chrono::milliseconds>(
-        std::chrono::system_clock::now());
+//   void sleep(void) {
+//     auto now = time_point_cast<std::chrono::milliseconds>(
+//         std::chrono::system_clock::now());
 
-    auto diff = duration_cast<std::chrono::milliseconds>(now - last_time);
-    if (diff < dt) {
-      std::this_thread::sleep_for(dt - diff);
-    }
-    last_time = time_point_cast<std::chrono::milliseconds>(
-        std::chrono::system_clock::now());
-  }
+//     auto diff = duration_cast<std::chrono::milliseconds>(now - last_time);
+//     if (diff < dt) {
+//       std::this_thread::sleep_for(dt - diff);
+//     }
+//     last_time = time_point_cast<std::chrono::milliseconds>(
+//         std::chrono::system_clock::now());
+//   }
 
-protected:
-  std::chrono::time_point<std::chrono::system_clock> last_time;
-  // std::chrono::duration<double> dt;
-  std::chrono::milliseconds dt;
-};
+// protected:
+//   std::chrono::time_point<std::chrono::system_clock> last_time;
+//   // std::chrono::duration<double> dt;
+//   std::chrono::milliseconds dt;
+// };
 
 /////////////////////////////////////////////////////////////////////////
 
-static uint64_t microsSinceEpoch() {
-  // struct timeval tv;
-  // uint64_t micros = 0;
-  // gettimeofday(&tv, NULL);
-  // micros = ((uint64_t)tv.tv_sec) * 1000000 + tv.tv_usec;
+// static uint64_t microsSinceEpoch() {
+//   // struct timeval tv;
+//   // uint64_t micros = 0;
+//   // gettimeofday(&tv, NULL);
+//   // micros = ((uint64_t)tv.tv_sec) * 1000000 + tv.tv_usec;
 
-  uint64_t micros = 0;
-  // using namespace std::chrono;
-  micros = duration_cast<std::chrono::microseconds>(
-               std::chrono::system_clock::now().time_since_epoch())
-               .count();
+//   uint64_t micros = 0;
+//   // using namespace std::chrono;
+//   micros = duration_cast<std::chrono::microseconds>(
+//                std::chrono::system_clock::now().time_since_epoch())
+//                .count();
 
-  return micros;
-}
+//   return micros;
+// }
 
-static uint64_t millis() {
-  // struct timeval tv;
-  // uint64_t micros = 0;
-  // gettimeofday(&tv, NULL);
-  // micros = ((uint64_t)tv.tv_sec) * 1000000 + tv.tv_usec;
+// static uint64_t millis() {
+//   // struct timeval tv;
+//   // uint64_t micros = 0;
+//   // gettimeofday(&tv, NULL);
+//   // micros = ((uint64_t)tv.tv_sec) * 1000000 + tv.tv_usec;
 
-  uint64_t msec = 0;
-  // using namespace std::chrono;
-  msec = duration_cast<std::chrono::milliseconds>(
-             std::chrono::system_clock::now().time_since_epoch())
-             .count();
+//   uint64_t msec = 0;
+//   // using namespace std::chrono;
+//   msec = duration_cast<std::chrono::milliseconds>(
+//              std::chrono::system_clock::now().time_since_epoch())
+//              .count();
 
-  return msec;
-}
+//   return msec;
+// }
 
 ////////////////////////////////////////////////////////////////////////////
 // https://en.cppreference.com/w/cpp/chrono

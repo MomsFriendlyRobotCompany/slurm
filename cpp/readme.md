@@ -2,12 +2,33 @@
 
 # Slurm C++
 
-things?
+**still in development**
 
-- [ ] constants: centi, milli, deg2rad, etc
-- [ ] files: rm, mkdir, ...
-- [ ] rate
-- [ ] signalcatch
+- Colors:
+    - `ForeColor`
+    - `BackColor`
+- `Rate`
+- `SigCapture`
+- time:
+    - `sleep`, `msleep`, `usleep`
+    - since epoch:
+        - `millis()`
+        - `microsSinceEpoch()`
+- `Logger`
+
+## Files
+
+- `rmdir`
+- `mkdir`
+- `touch`
+- `temp_file()`
+
+## things?
+
+- [x] constants: ft2m, rad2deg, deg2rad, etc
+- [x] files: rm, mkdir, ...
+- [x] rate
+- [x] signalcatch
 - [ ] storage: read, write, ....
 - [ ] simple process (fork not thread)
 

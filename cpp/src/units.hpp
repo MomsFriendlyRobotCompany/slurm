@@ -1,6 +1,6 @@
 /**************************************\
  * The MIT License (MIT)
- * Copyright (c) 2022 Kevin Walchko
+ * Copyright (c) 2014 Kevin Walchko
  * see LICENSE for full details
 \**************************************/
 #pragma once
