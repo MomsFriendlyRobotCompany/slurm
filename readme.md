@@ -2,7 +2,7 @@
 
 # Slurm
 
-[![Actions Status](https://github.com/MomsFriendlyRobotCompany/slurm/workflows/walchko%20pytest/badge.svg)](https://github.com/MomsFriendlyRobotCompany/slurm/actions)
+[![Python](https://github.com/MomsFriendlyRobotCompany/slurm/actions/workflows/python.yaml/badge.svg)](https://github.com/MomsFriendlyRobotCompany/slurm/actions/workflows/python.yaml)
 ![GitHub](https://img.shields.io/github/license/MomsFriendlyRobotCompany/slurm)
 
 
