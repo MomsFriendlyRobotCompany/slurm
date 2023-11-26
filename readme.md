@@ -4,6 +4,11 @@
 
 [![Python](https://github.com/MomsFriendlyRobotCompany/slurm/actions/workflows/python.yaml/badge.svg)](https://github.com/MomsFriendlyRobotCompany/slurm/actions/workflows/python.yaml)
 ![GitHub](https://img.shields.io/github/license/MomsFriendlyRobotCompany/slurm)
+[![Latest Version](https://img.shields.io/pypi/v/slurm.svg)](https://pypi.python.org/pypi/slurm/)
+[![image](https://img.shields.io/pypi/pyversions/slurm.svg)](https://pypi.python.org/pypi/slurm)
+[![image](https://img.shields.io/pypi/format/slurm.svg)](https://pypi.python.org/pypi/slurm)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/slurm?color=aqua)
+
 
 
 # MIT License
